@@ -1,6 +1,11 @@
+---
+layout: home
+title: Home
+---
+
 # Regularized Reflections
 
-**Welcome to Regularized Reflections**
+**Welcome to RR**
 
 In machine learning, regularization prevents models from overfitting—from becoming so fixated on training data that they lose sight of the bigger picture. Here, we apply the same principle to AI discourse.
 
