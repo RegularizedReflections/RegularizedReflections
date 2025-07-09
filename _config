@@ -7,7 +7,7 @@ baseurl: "/RegularizedReflections"
 
 # Build settings
 markdown: kramdown
-theme: minima
+remote_theme: pages-themes/slate        # Sombre par défaut
 plugins:
   - jekyll-feed
 
