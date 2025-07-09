@@ -1,27 +1,21 @@
 title: Regularized Reflections
 description: Where AI meets reality
 author: Regularized Reflector
-email: 
 url: "https://regularizedreflections.github.io/RegularizedReflections"
 baseurl: "/RegularizedReflections"
 
 # Build settings
 markdown: kramdown
-remote_theme: pages-themes/slate        # Sombre par défaut
+remote_theme: pages-themes/slate
+
 plugins:
   - jekyll-feed
 
-# Collections
+# Social links
+github_username: RegularizedReflections
+
+# Collections (simplifié pour slate)
 collections:
   posts:
     output: true
-
-# Pagination
-paginate: 5
-paginate_path: "/page:num/"
-
-# Social links (optional)
-github_username: RegularizedReflections
-
-# Show excerpts on homepage
-show_excerpts: true
+    permalink: /:categories/:year/:month/:day/:title/
