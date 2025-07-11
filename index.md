@@ -5,7 +5,7 @@ title: Home
 
 # Regularized Reflections
 
-**Welcome to RR**
+## Welcome !
 
 In machine learning, regularization prevents models from overfitting—from becoming so fixated on training data that they lose sight of the bigger picture. Here, we apply the same principle to AI discourse.
 
@@ -19,6 +19,8 @@ Whether you're a researcher tired of breathless coverage, a developer seeking gr
 
 Because in a field moving at the speed of compute, sometimes the most valuable contribution is simply helping the signal emerge from the noise.
 
+## Visual example
+
 [🎯 View Interactive Animation](animation.html) - See regularization in action
 
 ---
@@ -26,5 +28,3 @@ Because in a field moving at the speed of compute, sometimes the most valuable c
 *Regularized Reflections: Where AI meets reality.*
 
 ## Latest Posts
-
-*Coming soon...*
