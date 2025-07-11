@@ -5,7 +5,7 @@ url: "https://regularizedreflections.github.io/RegularizedReflections"
 baseurl: "/RegularizedReflections"
 
 # Dark theme that actually works
-remote_theme: cotes2020/jekyll-theme-chirpy
+remote_theme: pages-themes/midnight
 
 # Build settings
 markdown: kramdown
