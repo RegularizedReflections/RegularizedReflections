@@ -4,7 +4,7 @@ author: Regularized Reflector
 
 # Build settings
 markdown: kramdown
-theme: minima
+theme: midnight
 
 plugins:
   - jekyll-feed
