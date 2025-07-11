@@ -1,0 +1,36 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; // main partials
+
+// Custom overrides
+.page__content {
+  font-size: 0.85em !important;  // Réduire la taille du texte
+  line-height: 1.6 !important;   // Meilleur espacement
+}
+
+.page {
+  max-width: 1200px !important;  // Élargir la page (vs 800px par défaut)
+}
+
+.page__inner-wrap {
+  max-width: 100% !important;
+}
+
+// Police plus moderne, style 2025
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !important;
+}
+
+// Titres plus nets
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+}
+
+// Réduire les marges excessives
+.page__content p {
+  margin-bottom: 1em !important;
+}
