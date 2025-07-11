@@ -5,9 +5,8 @@ url: "https://regularizedreflections.github.io/RegularizedReflections"
 baseurl: "/RegularizedReflections"
 
 # Dark theme that actually works
-remote_theme: "jekyll/minima"
-minima:
-  skin: dark
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+minimal_mistakes_skin: "dark"
 
 # Build settings
 markdown: kramdown
