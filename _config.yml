@@ -11,9 +11,9 @@ author: Regularized Reflector
 # theme: merlot
 # theme: minimal
 # theme: modernist
-theme: slate
+# theme: slate
 # theme: tactile
-# theme: time-machine
+theme: time-machine
 
 plugins:
   - jekyll-feed
