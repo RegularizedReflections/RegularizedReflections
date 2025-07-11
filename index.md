@@ -19,6 +19,8 @@ Whether you're a researcher tired of breathless coverage, a developer seeking gr
 
 Because in a field moving at the speed of compute, sometimes the most valuable contribution is simply helping the signal emerge from the noise.
 
+[🎯 View Interactive Animation](animation.html) - See regularization in action
+
 ---
 
 *Regularized Reflections: Where AI meets reality.*
