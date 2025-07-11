@@ -68,6 +68,12 @@
             background: #262626;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+
+        .neural-container:hover {
+            border-color: #bb86fc;
+            box-shadow: 0 4px 16px rgba(187, 134, 252, 0.2);
         }
 
         .network {
@@ -95,11 +101,21 @@
         }
 
         .chaotic .connection {
-            animation: chaotic-flow 1s linear infinite;
+            animation: chaotic-flow 0.3s linear infinite;
+            opacity: 0.8;
         }
 
         .regularized .connection {
-            animation: smooth-flow 3s ease-in-out infinite;
+            animation: smooth-flow 2s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        .chaotic .node {
+            animation: chaotic-pulse 0.5s ease-in-out infinite;
+        }
+
+        .regularized .node {
+            animation: pulse 3s ease-in-out infinite;
         }
 
         .state-labels {
@@ -142,7 +158,43 @@
             padding: 6px 16px;
             border-radius: 20px;
             border: 1px solid #bb86fc;
-            animation: fade-in-out 6s infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .transition-indicator:hover {
+            background: rgba(187, 134, 252, 0.2);
+            transform: translateX(-50%) scale(1.05);
+        }
+
+        .control-panel {
+            position: absolute;
+            top: 50px;
+            right: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-btn {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #bb86fc;
+            color: #bb86fc;
+            padding: 6px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 11px;
+            transition: all 0.2s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(187, 134, 252, 0.2);
+            transform: scale(1.05);
+        }
+
+        .control-btn.active {
+            background: #bb86fc;
+            color: #1a1a1a;
         }
 
         .technical-explanation {
@@ -193,13 +245,35 @@
             }
         }
 
+        @keyframes chaotic-pulse {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(0.8);
+                box-shadow: 0 0 5px rgba(207, 102, 121, 0.8);
+                background: #cf6679;
+            }
+            25% { 
+                transform: translate(-50%, -50%) scale(1.4);
+                box-shadow: 0 0 20px rgba(207, 102, 121, 1);
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(0.6);
+                box-shadow: 0 0 3px rgba(207, 102, 121, 0.5);
+            }
+            75% { 
+                transform: translate(-50%, -50%) scale(1.2);
+                box-shadow: 0 0 15px rgba(207, 102, 121, 0.9);
+            }
+        }
+
         @keyframes chaotic-flow {
-            0% { opacity: 0.2; }
-            20% { opacity: 0.9; }
-            40% { opacity: 0.3; }
-            60% { opacity: 0.8; }
-            80% { opacity: 0.1; }
-            100% { opacity: 0.2; }
+            0% { opacity: 0.1; background: linear-gradient(90deg, transparent, #cf6679, transparent); }
+            15% { opacity: 1; }
+            30% { opacity: 0.2; }
+            45% { opacity: 0.9; }
+            60% { opacity: 0.1; }
+            75% { opacity: 0.8; }
+            90% { opacity: 0.3; }
+            100% { opacity: 0.1; }
         }
 
         @keyframes smooth-flow {
@@ -237,16 +311,22 @@
             <h1>Interactive Visualization</h1>
             
             <div class="visualization-intro">
-                Watch how regularization transforms chaotic discourse into structured analysis
+                Watch how regularization transforms chaotic discourse into structured analysis<br>
+                <small style="color: #888; margin-top: 10px; display: block;">Click the animation or use controls to interact</small>
             </div>
             
-            <div class="neural-container">
+            <div class="neural-container" onclick="toggleRegularization()">
                 <div class="network" id="network"></div>
                 <div class="state-labels">
                     <div class="state-label chaotic-label">Overfitted Hype</div>
                     <div class="state-label regularized-label">Measured Analysis</div>
                 </div>
-                <div class="transition-indicator">Applying regularization...</div>
+                <div class="transition-indicator" id="transitionText">Click to apply regularization</div>
+                <div class="control-panel">
+                    <div class="control-btn" onclick="event.stopPropagation(); setMode('chaotic')">Chaotic</div>
+                    <div class="control-btn" onclick="event.stopPropagation(); setMode('regularized')">Regularized</div>
+                    <div class="control-btn" onclick="event.stopPropagation(); setMode('auto')">Auto</div>
+                </div>
             </div>
 
             <div class="technical-explanation">
@@ -275,6 +355,11 @@ insight = observation + λ × critical_thinking
     </main>
 
     <script>
+        let currentMode = 'auto';
+        let isRegularized = false;
+        let autoInterval = null;
+        let nodes = [];
+
         function createNetwork() {
             const network = document.getElementById('network');
             const container = network.parentElement;
@@ -283,80 +368,210 @@ insight = observation + λ × critical_thinking
             
             // Clear existing content
             network.innerHTML = '';
+            nodes = [];
             
-            // Create nodes in a semi-structured pattern
-            const nodes = [];
-            const nodeCount = 10;
+            // Create nodes with more chaotic initial positioning
+            const nodeCount = 12;
             
             for (let i = 0; i < nodeCount; i++) {
                 const node = document.createElement('div');
                 node.className = 'node';
                 
-                // Create clusters with some randomness
-                const clusterAngle = (Math.floor(i / 3) / 3) * 2 * Math.PI;
-                const clusterRadius = Math.min(width, height) * 0.2;
-                const centerX = width / 2;
-                const centerY = height / 2;
+                // More random initial positions for dramatic effect
+                const x = 30 + Math.random() * (width - 60);
+                const y = 60 + Math.random() * (height - 120);
                 
-                const baseX = centerX + Math.cos(clusterAngle) * clusterRadius;
-                const baseY = centerY + Math.sin(clusterAngle) * clusterRadius;
-                
-                const x = baseX + (Math.random() - 0.5) * 80;
-                const y = baseY + (Math.random() - 0.5) * 80;
-                
-                // Ensure nodes stay within bounds
-                const finalX = Math.max(20, Math.min(width - 20, x));
-                const finalY = Math.max(20, Math.min(height - 20, y));
-                
-                node.style.left = finalX + 'px';
-                node.style.top = finalY + 'px';
+                node.style.left = x + 'px';
+                node.style.top = y + 'px';
                 network.appendChild(node);
-                nodes.push({ element: node, x: finalX, y: finalY });
+                nodes.push({ 
+                    element: node, 
+                    x: x, 
+                    y: y,
+                    originalX: x,
+                    originalY: y,
+                    targetX: x,
+                    targetY: y
+                });
             }
 
-            // Create connections
+            // Create many more connections for chaotic effect
+            createConnections();
+            startAutoMode();
+        }
+
+        function createConnections() {
+            const network = document.getElementById('network');
+            // Remove existing connections
+            const existingConnections = network.querySelectorAll('.connection');
+            existingConnections.forEach(conn => conn.remove());
+
+            // Create connections based on current mode
+            const connectionDensity = isRegularized ? 0.25 : 0.6;
+            
             for (let i = 0; i < nodes.length; i++) {
                 for (let j = i + 1; j < nodes.length; j++) {
-                    if (Math.random() > 0.35) continue; // Selective connections
+                    if (Math.random() > connectionDensity) continue;
                     
                     const node1 = nodes[i];
                     const node2 = nodes[j];
                     const connection = document.createElement('div');
                     connection.className = 'connection';
                     
-                    const dx = node2.x - node1.x;
-                    const dy = node2.y - node1.y;
-                    const length = Math.sqrt(dx * dx + dy * dy);
-                    const angle = Math.atan2(dy, dx) * 180 / Math.PI;
-                    
-                    connection.style.left = node1.x + 'px';
-                    connection.style.top = node1.y + 'px';
-                    connection.style.width = length + 'px';
-                    connection.style.transform = `rotate(${angle}deg)`;
-                    
+                    updateConnection(connection, node1, node2);
                     network.appendChild(connection);
                 }
             }
+        }
 
-            // Animation cycle
-            function animationCycle() {
-                // Start chaotic
-                network.className = 'chaotic';
-                
-                setTimeout(() => {
-                    network.className = 'regularized';
-                }, 3500);
-                
-                setTimeout(animationCycle, 7000);
+        function updateConnection(connection, node1, node2) {
+            const dx = node2.x - node1.x;
+            const dy = node2.y - node1.y;
+            const length = Math.sqrt(dx * dx + dy * dy);
+            const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+            
+            connection.style.left = node1.x + 'px';
+            connection.style.top = node1.y + 'px';
+            connection.style.width = length + 'px';
+            connection.style.transform = `rotate(${angle}deg)`;
+        }
+
+        function repositionNodes() {
+            const container = document.getElementById('network').parentElement;
+            const width = container.offsetWidth;
+            const height = container.offsetHeight;
+
+            if (isRegularized) {
+                // Organize nodes in a structured grid-like pattern
+                const cols = Math.ceil(Math.sqrt(nodes.length));
+                const rows = Math.ceil(nodes.length / cols);
+                const cellWidth = (width - 100) / cols;
+                const cellHeight = (height - 140) / rows;
+
+                nodes.forEach((node, i) => {
+                    const col = i % cols;
+                    const row = Math.floor(i / cols);
+                    node.targetX = 50 + col * cellWidth + cellWidth / 2 + (Math.random() - 0.5) * 30;
+                    node.targetY = 70 + row * cellHeight + cellHeight / 2 + (Math.random() - 0.5) * 20;
+                });
+            } else {
+                // Return to more random positions
+                nodes.forEach(node => {
+                    node.targetX = 30 + Math.random() * (width - 60);
+                    node.targetY = 60 + Math.random() * (height - 120);
+                });
+            }
+
+            // Animate to new positions
+            animateNodes();
+        }
+
+        function animateNodes() {
+            const duration = 1500;
+            const startTime = Date.now();
+
+            function animate() {
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeProgress = 1 - Math.pow(1 - progress, 3); // Ease out cubic
+
+                nodes.forEach(node => {
+                    node.x = node.originalX + (node.targetX - node.originalX) * easeProgress;
+                    node.y = node.originalY + (node.targetY - node.originalY) * easeProgress;
+                    node.element.style.left = node.x + 'px';
+                    node.element.style.top = node.y + 'px';
+                });
+
+                // Update connections in real-time
+                const connections = document.querySelectorAll('.connection');
+                let connIndex = 0;
+                for (let i = 0; i < nodes.length && connIndex < connections.length; i++) {
+                    for (let j = i + 1; j < nodes.length && connIndex < connections.length; j++) {
+                        updateConnection(connections[connIndex], nodes[i], nodes[j]);
+                        connIndex++;
+                    }
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    // Update original positions for next animation
+                    nodes.forEach(node => {
+                        node.originalX = node.x;
+                        node.originalY = node.y;
+                    });
+                }
+            }
+
+            animate();
+        }
+
+        function toggleRegularization() {
+            if (currentMode === 'auto') {
+                setMode('manual');
             }
             
-            // Start animation after brief delay
-            setTimeout(animationCycle, 1500);
+            isRegularized = !isRegularized;
+            applyRegularization();
+        }
+
+        function applyRegularization() {
+            const network = document.getElementById('network');
+            const transitionText = document.getElementById('transitionText');
+            
+            if (isRegularized) {
+                network.className = 'regularized';
+                transitionText.textContent = 'Regularization applied ✓';
+                transitionText.style.color = '#03dac6';
+                transitionText.style.borderColor = '#03dac6';
+            } else {
+                network.className = 'chaotic';
+                transitionText.textContent = 'Chaotic state - click to regularize';
+                transitionText.style.color = '#cf6679';
+                transitionText.style.borderColor = '#cf6679';
+            }
+            
+            repositionNodes();
+            setTimeout(createConnections, 200);
+        }
+
+        function setMode(mode) {
+            currentMode = mode;
+            const buttons = document.querySelectorAll('.control-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            if (mode === 'chaotic') {
+                isRegularized = false;
+                applyRegularization();
+                buttons[0].classList.add('active');
+                clearInterval(autoInterval);
+            } else if (mode === 'regularized') {
+                isRegularized = true;
+                applyRegularization();
+                buttons[1].classList.add('active');
+                clearInterval(autoInterval);
+            } else if (mode === 'auto') {
+                startAutoMode();
+                buttons[2].classList.add('active');
+            }
+        }
+
+        function startAutoMode() {
+            clearInterval(autoInterval);
+            autoInterval = setInterval(() => {
+                toggleRegularization();
+            }, 4000);
+            
+            // Start in chaotic state
+            isRegularized = false;
+            applyRegularization();
         }
 
         // Initialize when page loads
         window.addEventListener('load', createNetwork);
-        window.addEventListener('resize', createNetwork);
+        window.addEventListener('resize', () => {
+            setTimeout(createNetwork, 100);
+        });
     </script>
 </body>
 </html>
