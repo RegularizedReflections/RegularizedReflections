@@ -4,7 +4,7 @@ author: Regularized Reflector
 
 # Build settings
 markdown: kramdown
-theme: hacker
+theme: slate
 
 plugins:
   - jekyll-feed
