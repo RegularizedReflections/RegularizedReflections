@@ -2,18 +2,9 @@ title: Regularized Reflections
 description: Where AI meets reality
 author: Regularized Reflector
 
-# SEULS ces thèmes marchent vraiment sur GitHub Pages
-#theme: minima
-# theme: architect  
-# theme: cayman
-# theme: dinky
-# theme: leap-day
-# theme: merlot
-# theme: minimal
-# theme: modernist
-# theme: slate
-# theme: tactile
-theme: time-machine
+remote_theme: jekyll/minima
+minima:
+  skin: dark
 
 plugins:
   - jekyll-feed
