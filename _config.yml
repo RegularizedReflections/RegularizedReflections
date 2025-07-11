@@ -2,9 +2,7 @@ title: Regularized Reflections
 description: Where AI meets reality
 author: Regularized Reflector
 
-# Build settings
-markdown: kramdown
-theme: slate
+remote_theme: pages-themes/hacker
 
 plugins:
   - jekyll-feed
