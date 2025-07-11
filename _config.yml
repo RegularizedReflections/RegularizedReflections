@@ -1,8 +1,23 @@
 title: Regularized Reflections
 description: Where AI meets reality
 author: Regularized Reflector
+url: "https://regularizedreflections.github.io/RegularizedReflections"
+baseurl: "/RegularizedReflections"
 
-remote_theme: pages-themes/hacker
+# Dark theme that actually works
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+minimal_mistakes_skin: "dark"
 
+# Build settings
+markdown: kramdown
 plugins:
   - jekyll-feed
+  - jekyll-include-cache
+
+# Collections
+collections:
+  posts:
+    output: true
+
+# Show excerpts
+show_excerpts: true
