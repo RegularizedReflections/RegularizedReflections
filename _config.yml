@@ -1,22 +1,19 @@
 title: Regularized Reflections
 description: Where AI meets reality
 author: Regularized Reflector
-url: "https://regularizedreflections.github.io/RegularizedReflections"
-baseurl: "/RegularizedReflections"
 
-# Dark theme that actually works
-remote_theme: pages-themes/midnight
+# SEULS ces thèmes marchent vraiment sur GitHub Pages
+#theme: minima
+# theme: architect  
+# theme: cayman
+# theme: dinky
+# theme: leap-day
+# theme: merlot
+# theme: minimal
+# theme: modernist
+theme: slate
+# theme: tactile
+# theme: time-machine
 
-# Build settings
-markdown: kramdown
 plugins:
   - jekyll-feed
-  - jekyll-include-cache
-
-# Collections
-collections:
-  posts:
-    output: true
-
-# Show excerpts
-show_excerpts: true
