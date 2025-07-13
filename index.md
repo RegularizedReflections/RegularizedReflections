@@ -22,6 +22,7 @@ Because in a field moving at the speed of compute, sometimes the most valuable c
 ## Visual example
 
 [🎯 View Interactive Animation](animation.html) - See regularization in action
+[🎯 View Interactive Animation](animation2.html) - See regularization in action
 
 ---
 
