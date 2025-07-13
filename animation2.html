@@ -93,43 +93,43 @@
         }
 
         .petal1 {
-            transform: rotate(0deg) translateY(-20px);
-            animation: petalGrow 0.5s ease-out 2s forwards;
+            transform: rotate(0deg) translateY(-25px) scale(0);
+            animation: petalGrow1 0.5s ease-out 2s forwards;
         }
 
         .petal2 {
-            transform: rotate(45deg) translateY(-20px);
-            animation: petalGrow 0.5s ease-out 2.2s forwards;
+            transform: rotate(45deg) translateY(-25px) scale(0);
+            animation: petalGrow2 0.5s ease-out 2.2s forwards;
         }
 
         .petal3 {
-            transform: rotate(90deg) translateY(-20px);
-            animation: petalGrow 0.5s ease-out 2.4s forwards;
+            transform: rotate(90deg) translateY(-25px) scale(0);
+            animation: petalGrow3 0.5s ease-out 2.4s forwards;
         }
 
         .petal4 {
-            transform: rotate(135deg) translateY(-20px);
-            animation: petalGrow 0.5s ease-out 2.6s forwards;
+            transform: rotate(135deg) translateY(-25px) scale(0);
+            animation: petalGrow4 0.5s ease-out 2.6s forwards;
         }
 
         .petal5 {
-            transform: rotate(180deg) translateY(-20px);
-            animation: petalGrow 0.5s ease-out 2.8s forwards;
+            transform: rotate(180deg) translateY(-25px) scale(0);
+            animation: petalGrow5 0.5s ease-out 2.8s forwards;
         }
 
         .petal6 {
-            transform: rotate(225deg) translateY(-20px);
-            animation: petalGrow 0.5s ease-out 3s forwards;
+            transform: rotate(225deg) translateY(-25px) scale(0);
+            animation: petalGrow6 0.5s ease-out 3s forwards;
         }
 
         .petal7 {
-            transform: rotate(270deg) translateY(-20px);
-            animation: petalGrow 0.5s ease-out 3.2s forwards;
+            transform: rotate(270deg) translateY(-25px) scale(0);
+            animation: petalGrow7 0.5s ease-out 3.2s forwards;
         }
 
         .petal8 {
-            transform: rotate(315deg) translateY(-20px);
-            animation: petalGrow 0.5s ease-out 3.4s forwards;
+            transform: rotate(315deg) translateY(-25px) scale(0);
+            animation: petalGrow8 0.5s ease-out 3.4s forwards;
         }
 
         .center {
@@ -201,10 +201,52 @@
             100% { opacity: 1; transform: translateX(-50%) scale(1); }
         }
 
-        @keyframes petalGrow {
-            0% { transform: scale(0) rotate(var(--rotation, 0deg)) translateY(-20px); }
-            50% { transform: scale(1.2) rotate(var(--rotation, 0deg)) translateY(-20px); }
-            100% { transform: scale(1) rotate(var(--rotation, 0deg)) translateY(-20px); }
+        @keyframes petalGrow1 {
+            0% { transform: rotate(0deg) translateY(-25px) scale(0); }
+            50% { transform: rotate(0deg) translateY(-25px) scale(1.2); }
+            100% { transform: rotate(0deg) translateY(-25px) scale(1); }
+        }
+
+        @keyframes petalGrow2 {
+            0% { transform: rotate(45deg) translateY(-25px) scale(0); }
+            50% { transform: rotate(45deg) translateY(-25px) scale(1.2); }
+            100% { transform: rotate(45deg) translateY(-25px) scale(1); }
+        }
+
+        @keyframes petalGrow3 {
+            0% { transform: rotate(90deg) translateY(-25px) scale(0); }
+            50% { transform: rotate(90deg) translateY(-25px) scale(1.2); }
+            100% { transform: rotate(90deg) translateY(-25px) scale(1); }
+        }
+
+        @keyframes petalGrow4 {
+            0% { transform: rotate(135deg) translateY(-25px) scale(0); }
+            50% { transform: rotate(135deg) translateY(-25px) scale(1.2); }
+            100% { transform: rotate(135deg) translateY(-25px) scale(1); }
+        }
+
+        @keyframes petalGrow5 {
+            0% { transform: rotate(180deg) translateY(-25px) scale(0); }
+            50% { transform: rotate(180deg) translateY(-25px) scale(1.2); }
+            100% { transform: rotate(180deg) translateY(-25px) scale(1); }
+        }
+
+        @keyframes petalGrow6 {
+            0% { transform: rotate(225deg) translateY(-25px) scale(0); }
+            50% { transform: rotate(225deg) translateY(-25p) scale(1.2); }
+            100% { transform: rotate(225deg) translateY(-25px) scale(1); }
+        }
+
+        @keyframes petalGrow7 {
+            0% { transform: rotate(270deg) translateY(-25px) scale(0); }
+            50% { transform: rotate(270deg) translateY(-25px) scale(1.2); }
+            100% { transform: rotate(270deg) translateY(-25px) scale(1); }
+        }
+
+        @keyframes petalGrow8 {
+            0% { transform: rotate(315deg) translateY(-25px) scale(0); }
+            50% { transform: rotate(315deg) translateY(-25px) scale(1.2); }
+            100% { transform: rotate(315deg) translateY(-25px) scale(1); }
         }
 
         @keyframes showCenter {
