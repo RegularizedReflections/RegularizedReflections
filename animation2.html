@@ -3,282 +3,319 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animation Terre-Soleil</title>
+    <title>Fleur Rose qui Pousse</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: #000;
-            overflow: hidden;
+            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             font-family: Arial, sans-serif;
         }
-        canvas {
-            display: block;
+
+        .container {
+            position: relative;
+            width: 400px;
+            height: 500px;
         }
-        .controls {
+
+        .ground {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(to bottom, #8B4513, #654321);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .stem {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 0;
+            background: linear-gradient(to top, #228B22, #32CD32);
+            border-radius: 3px;
+            animation: growStem 2s ease-out forwards;
+        }
+
+        .leaves {
+            position: absolute;
+            bottom: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: showLeaves 1s ease-out 1.5s forwards;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 30px;
+            height: 15px;
+            background: linear-gradient(45deg, #228B22, #32CD32);
+            border-radius: 50% 10px;
+            transform-origin: right center;
+        }
+
+        .leaf1 {
+            left: -35px;
+            top: 0;
+            transform: rotate(-45deg);
+        }
+
+        .leaf2 {
+            right: -35px;
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .flower {
+            position: absolute;
+            bottom: 300px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: bloomFlower 2s ease-out 2s forwards;
+        }
+
+        .petal {
+            position: absolute;
+            width: 40px;
+            height: 60px;
+            background: linear-gradient(135deg, #FFB6C1, #FF69B4, #FF1493);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            transform-origin: center bottom;
+            box-shadow: 0 2px 10px rgba(255, 20, 147, 0.3);
+        }
+
+        .petal1 {
+            transform: rotate(0deg) translateY(-20px);
+            animation: petalGrow 0.5s ease-out 2s forwards;
+        }
+
+        .petal2 {
+            transform: rotate(45deg) translateY(-20px);
+            animation: petalGrow 0.5s ease-out 2.2s forwards;
+        }
+
+        .petal3 {
+            transform: rotate(90deg) translateY(-20px);
+            animation: petalGrow 0.5s ease-out 2.4s forwards;
+        }
+
+        .petal4 {
+            transform: rotate(135deg) translateY(-20px);
+            animation: petalGrow 0.5s ease-out 2.6s forwards;
+        }
+
+        .petal5 {
+            transform: rotate(180deg) translateY(-20px);
+            animation: petalGrow 0.5s ease-out 2.8s forwards;
+        }
+
+        .petal6 {
+            transform: rotate(225deg) translateY(-20px);
+            animation: petalGrow 0.5s ease-out 3s forwards;
+        }
+
+        .petal7 {
+            transform: rotate(270deg) translateY(-20px);
+            animation: petalGrow 0.5s ease-out 3.2s forwards;
+        }
+
+        .petal8 {
+            transform: rotate(315deg) translateY(-20px);
+            animation: petalGrow 0.5s ease-out 3.4s forwards;
+        }
+
+        .center {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: radial-gradient(circle, #FFD700, #FFA500);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            animation: showCenter 0.5s ease-out 3.6s forwards;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #FFD700;
+            border-radius: 50%;
+            opacity: 0;
+            animation: sparkle 2s ease-in-out 4s infinite;
+        }
+
+        .sparkle1 {
+            top: 20px;
+            left: 30px;
+            animation-delay: 4s;
+        }
+
+        .sparkle2 {
+            top: 40px;
+            right: 20px;
+            animation-delay: 4.5s;
+        }
+
+        .sparkle3 {
+            top: 60px;
+            left: 10px;
+            animation-delay: 5s;
+        }
+
+        .title {
             position: absolute;
             top: 20px;
-            left: 20px;
-            color: white;
-            z-index: 100;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #FF1493;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            opacity: 0;
+            animation: showTitle 1s ease-out 4.5s forwards;
         }
-        .info {
+
+        @keyframes growStem {
+            0% { height: 0; }
+            100% { height: 200px; }
+        }
+
+        @keyframes showLeaves {
+            0% { opacity: 0; transform: translateX(-50%) scale(0); }
+            100% { opacity: 1; transform: translateX(-50%) scale(1); }
+        }
+
+        @keyframes bloomFlower {
+            0% { opacity: 0; transform: translateX(-50%) scale(0); }
+            100% { opacity: 1; transform: translateX(-50%) scale(1); }
+        }
+
+        @keyframes petalGrow {
+            0% { transform: scale(0) rotate(var(--rotation, 0deg)) translateY(-20px); }
+            50% { transform: scale(1.2) rotate(var(--rotation, 0deg)) translateY(-20px); }
+            100% { transform: scale(1) rotate(var(--rotation, 0deg)) translateY(-20px); }
+        }
+
+        @keyframes showCenter {
+            0% { transform: translate(-50%, -50%) scale(0); }
+            50% { transform: translate(-50%, -50%) scale(1.3); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes showTitle {
+            0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        .restart-btn {
             position: absolute;
             bottom: 20px;
-            left: 20px;
-            color: white;
-            font-size: 14px;
-            z-index: 100;
-        }
-        button {
-            background: #333;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #FF69B4, #FF1493);
             color: white;
             border: none;
-            padding: 10px 15px;
-            margin: 5px;
-            border-radius: 5px;
+            padding: 10px 20px;
+            border-radius: 20px;
             cursor: pointer;
+            font-size: 16px;
+            opacity: 0;
+            animation: showButton 1s ease-out 5s forwards;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
         }
-        button:hover {
-            background: #555;
+
+        .restart-btn:hover {
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.5);
+        }
+
+        @keyframes showButton {
+            0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        /* Styles pour la répétition de l'animation */
+        .container.restart * {
+            animation-play-state: paused;
+        }
+
+        .container.restart {
+            animation: restartAnimation 0.1s forwards;
+        }
+
+        @keyframes restartAnimation {
+            to {
+                transform: scale(1);
+            }
         }
     </style>
 </head>
 <body>
-    <div class="controls">
-        <button id="playPause">⏸️ Pause</button>
-        <button id="reset">🔄 Reset</button>
-    </div>
-    <div class="info">
-        <div>1 année = 10 secondes</div>
-        <div>Rotation terrestre : 24h réelles</div>
-        <div id="timeDisplay">Temps: 0.0s</div>
+    <div class="container" id="container">
+        <div class="title">🌸 Fleur Rose Magique 🌸</div>
+        
+        <div class="ground"></div>
+        
+        <div class="stem"></div>
+        
+        <div class="leaves">
+            <div class="leaf leaf1"></div>
+            <div class="leaf leaf2"></div>
+        </div>
+        
+        <div class="flower">
+            <div class="petal petal1"></div>
+            <div class="petal petal2"></div>
+            <div class="petal petal3"></div>
+            <div class="petal petal4"></div>
+            <div class="petal petal5"></div>
+            <div class="petal petal6"></div>
+            <div class="petal petal7"></div>
+            <div class="petal petal8"></div>
+            <div class="center"></div>
+        </div>
+        
+        <div class="sparkle sparkle1"></div>
+        <div class="sparkle sparkle2"></div>
+        <div class="sparkle sparkle3"></div>
+        
+        <button class="restart-btn" onclick="restartAnimation()">🔄 Recommencer</button>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // Configuration
-        const YEAR_DURATION = 10; // secondes pour une année complète
-        const EARTH_ROTATION_SPEED = 365.25; // rotations par année (365.25 jours)
-        
-        // Variables globales
-        let scene, camera, renderer, earth, sun, earthOrbit;
-        let isPlaying = true;
-        let startTime = Date.now();
-        let pausedTime = 0;
-        
-        // Initialisation
-        function init() {
-            // Scène
-            scene = new THREE.Scene();
+        function restartAnimation() {
+            const container = document.getElementById('container');
             
-            // Caméra
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.set(0, 50, 100);
-            camera.lookAt(0, 0, 0);
+            // Réinitialiser toutes les animations
+            container.style.animation = 'none';
+            container.offsetHeight; // Force le reflow
             
-            // Renderer
-            renderer = new THREE.WebGLRenderer({ antialias: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.shadowMap.enabled = true;
-            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-            document.body.appendChild(renderer.domElement);
+            // Supprimer et recréer le contenu pour relancer les animations
+            const content = container.innerHTML;
+            container.innerHTML = '';
+            container.offsetHeight; // Force le reflow
+            container.innerHTML = content;
             
-            // Étoiles en arrière-plan
-            createStars();
-            
-            // Soleil
-            createSun();
-            
-            // Terre
-            createEarth();
-            
-            // Lumière
-            setupLighting();
-            
-            // Contrôles
-            setupControls();
-            
-            // Redimensionnement
-            window.addEventListener('resize', onWindowResize);
-            
-            // Démarrage de l'animation
-            animate();
+            // Réassigner l'événement onclick au nouveau bouton
+            const newButton = container.querySelector('.restart-btn');
+            newButton.onclick = restartAnimation;
         }
-        
-        function createStars() {
-            const starsGeometry = new THREE.BufferGeometry();
-            const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.5 });
-            
-            const starsVertices = [];
-            for (let i = 0; i < 1000; i++) {
-                const x = (Math.random() - 0.5) * 800;
-                const y = (Math.random() - 0.5) * 800;
-                const z = (Math.random() - 0.5) * 800;
-                starsVertices.push(x, y, z);
-            }
-            
-            starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starsVertices, 3));
-            const stars = new THREE.Points(starsGeometry, starsMaterial);
-            scene.add(stars);
-        }
-        
-        function createSun() {
-            const sunGeometry = new THREE.SphereGeometry(8, 32, 32);
-            const sunMaterial = new THREE.MeshBasicMaterial({ 
-                color: 0xffff00,
-                emissive: 0xffaa00,
-                emissiveIntensity: 0.3
-            });
-            
-            sun = new THREE.Mesh(sunGeometry, sunMaterial);
-            sun.position.set(0, 0, 0);
-            scene.add(sun);
-            
-            // Halo autour du soleil
-            const haloGeometry = new THREE.SphereGeometry(10, 32, 32);
-            const haloMaterial = new THREE.MeshBasicMaterial({ 
-                color: 0xffff00,
-                transparent: true,
-                opacity: 0.1
-            });
-            const halo = new THREE.Mesh(haloGeometry, haloMaterial);
-            sun.add(halo);
-        }
-        
-        function createEarth() {
-            // Groupe pour l'orbite de la Terre
-            earthOrbit = new THREE.Group();
-            scene.add(earthOrbit);
-            
-            // Terre
-            const earthGeometry = new THREE.SphereGeometry(3, 32, 32);
-            const earthMaterial = new THREE.MeshPhongMaterial({ 
-                color: 0x2233ff,
-                emissive: 0x001122,
-                shininess: 100
-            });
-            
-            earth = new THREE.Mesh(earthGeometry, earthMaterial);
-            earth.position.set(60, 0, 0); // Distance du soleil
-            earth.castShadow = true;
-            earth.receiveShadow = true;
-            
-            // Continents simplifiés
-            const continentGeometry = new THREE.SphereGeometry(3.05, 32, 32);
-            const continentMaterial = new THREE.MeshPhongMaterial({ 
-                color: 0x228B22,
-                transparent: true,
-                opacity: 0.8
-            });
-            const continents = new THREE.Mesh(continentGeometry, continentMaterial);
-            earth.add(continents);
-            
-            // Atmosphère
-            const atmosphereGeometry = new THREE.SphereGeometry(3.2, 32, 32);
-            const atmosphereMaterial = new THREE.MeshBasicMaterial({ 
-                color: 0x88ccff,
-                transparent: true,
-                opacity: 0.1
-            });
-            const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial);
-            earth.add(atmosphere);
-            
-            earthOrbit.add(earth);
-            
-            // Orbite visible
-            const orbitGeometry = new THREE.RingGeometry(59, 61, 64);
-            const orbitMaterial = new THREE.MeshBasicMaterial({ 
-                color: 0x444444,
-                transparent: true,
-                opacity: 0.2,
-                side: THREE.DoubleSide
-            });
-            const orbitRing = new THREE.Mesh(orbitGeometry, orbitMaterial);
-            orbitRing.rotation.x = Math.PI / 2;
-            scene.add(orbitRing);
-        }
-        
-        function setupLighting() {
-            // Lumière directionnelle (soleil)
-            const sunLight = new THREE.DirectionalLight(0xffffff, 1);
-            sunLight.position.set(0, 0, 0);
-            sunLight.castShadow = true;
-            sunLight.shadow.camera.near = 0.1;
-            sunLight.shadow.camera.far = 200;
-            sunLight.shadow.camera.left = -100;
-            sunLight.shadow.camera.right = 100;
-            sunLight.shadow.camera.top = 100;
-            sunLight.shadow.camera.bottom = -100;
-            scene.add(sunLight);
-            
-            // Lumière ambiante
-            const ambientLight = new THREE.AmbientLight(0x404040, 0.3);
-            scene.add(ambientLight);
-        }
-        
-        function setupControls() {
-            const playPauseBtn = document.getElementById('playPause');
-            const resetBtn = document.getElementById('reset');
-            
-            playPauseBtn.addEventListener('click', () => {
-                isPlaying = !isPlaying;
-                if (isPlaying) {
-                    playPauseBtn.textContent = '⏸️ Pause';
-                    startTime = Date.now() - pausedTime;
-                } else {
-                    playPauseBtn.textContent = '▶️ Play';
-                    pausedTime = Date.now() - startTime;
-                }
-            });
-            
-            resetBtn.addEventListener('click', () => {
-                startTime = Date.now();
-                pausedTime = 0;
-                earthOrbit.rotation.y = 0;
-                earth.rotation.y = 0;
-            });
-        }
-        
-        function animate() {
-            requestAnimationFrame(animate);
-            
-            if (isPlaying) {
-                const currentTime = Date.now();
-                const elapsedTime = (currentTime - startTime) / 1000; // en secondes
-                
-                // Rotation de la Terre autour du Soleil (orbite)
-                const orbitAngle = (elapsedTime / YEAR_DURATION) * Math.PI * 2;
-                earthOrbit.rotation.y = orbitAngle;
-                
-                // Rotation de la Terre sur elle-même
-                const earthRotationAngle = (elapsedTime / YEAR_DURATION) * EARTH_ROTATION_SPEED * Math.PI * 2;
-                earth.rotation.y = earthRotationAngle;
-                
-                // Rotation du soleil
-                sun.rotation.y = elapsedTime * 0.1;
-                
-                // Mise à jour de l'affichage du temps
-                document.getElementById('timeDisplay').textContent = `Temps: ${elapsedTime.toFixed(1)}s`;
-            }
-            
-            // Rotation de la caméra autour de la scène
-            const cameraAngle = Date.now() * 0.0001;
-            camera.position.x = Math.cos(cameraAngle) * 100;
-            camera.position.z = Math.sin(cameraAngle) * 100;
-            camera.lookAt(0, 0, 0);
-            
-            renderer.render(scene, camera);
-        }
-        
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-        
-        // Démarrage
-        init();
     </script>
 </body>
 </html>
