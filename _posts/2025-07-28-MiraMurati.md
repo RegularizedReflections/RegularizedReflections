@@ -70,3 +70,7 @@ Thinking Machines Lab isn't just a startup; it's a $12 billion experiment to see
 The most insightful take isn't to be purely bullish or bearish. It's to recognize that while the "Hollywood" model provides a rational explanation for the investment, it's still a high-risk system built on narrative and pedigree. Our job, as the community of builders and thinkers, is to apply our own regularization. We must hold these blockbuster projects accountable not just for their promises, but for their results.
 
 The old startup playbook is being rewritten. The cameras are rolling, the budget has been spent. Now, the world waits to see if this story ends in Oscar glory—or box office disappointment.
+
+<video controls style="max-width: 100%;">
+  <source src="/Futuristic_Stage_Video_Generated.mp4" type="video/mp4">
+</video>
