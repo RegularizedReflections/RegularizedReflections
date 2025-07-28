@@ -72,5 +72,5 @@ The most insightful take isn't to be purely bullish or bearish. It's to recogniz
 The old startup playbook is being rewritten. The cameras are rolling, the budget has been spent. Now, the world waits to see if this story ends in Oscar glory—or box office disappointment.
 
 <video controls style="max-width: 100%;">
-  <source src="Futuristic_Stage_Video_Generated.mp4" type="video/mp4">
+  <source src="_post/Futuristic_Stage_Video_Generated.mp4" type="video/mp4">
 </video>
