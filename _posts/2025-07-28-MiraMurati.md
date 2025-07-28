@@ -1,3 +1,7 @@
+---
+title: "About Murati's Thinking Machines Lab"
+---
+
 # The Hollywood Overfit: A Regularized Reflection on AI's New Blockbuster Era
 
 In the new era of AI, some numbers don’t just raise eyebrows—they rewrite the rules.
